@@ -119,7 +119,7 @@ async def play_music(
     chat_id = msg.chat_id
     queue = await chat_cache.get_queue(chat_id)
     is_active = await chat_cache.is_active(chat_id)
-    msg = await edit_text(msg, text="🎶 Song found. Downloading...")
+    msg = await edit_text(msg, text="🎹 Requested Song. 🎹 Downloading...")
 
     if len(tracks) == 1:
         _track = tracks[0]
@@ -140,7 +140,7 @@ async def play_music(
             song.file_path = await call.song_download(song=song)
 
         if not song.file_path:
-            return await edit_text(msg, "❌ Error downloading the song.")
+            return await edit_text(msg, "❌ 404Error downloading the song.")
 
         dur = song.duration or await get_audio_duration(song.file_path)
         if song.duration == 0:
@@ -149,10 +149,10 @@ async def play_music(
         if is_active:
             await chat_cache.add_song(chat_id, song)
             text = (
-                f"<b>➻ Added to Queue at #{len(queue)}:</b>\n\n"
-                f"‣ <b>Title:</b> {song.name}\n"
-                f"‣ <b>Duration:</b> {sec_to_min(song.duration)}\n"
-                f"‣ <b>Requested by:</b> {song.user}"
+                f"<b>𝄩 Added to the list at #{len(queue)}:</b>\n\n"
+                f"𝄩 <b>Title:</b> {song.name}\n"
+                f"𝄩 <b>Duration:</b> {sec_to_min(song.duration)}\n"
+                f"𝄩 <b>Requested by:</b> {song.user}"
             )
 
             thumb = await gen_thumb(song)
@@ -165,10 +165,10 @@ async def play_music(
         await chat_cache.add_song(chat_id, song)
         thumb = await gen_thumb(song)
         text = (
-            f"🎵 <b>Now playing:</b>\n\n"
-            f"‣ <b>Title:</b> {song.name}\n"
-            f"‣ <b>Duration:</b> {sec_to_min(dur)}\n"
-            f"‣ <b>Requested by:</b> {song.user}"
+            f"ø <b>Now playing:</b>\n\n"
+            f"𝆗 <b>Title:</b> {song.name}\n"
+            f"𝆗 <b>Duration:</b> {sec_to_min(dur)}\n"
+            f"𝆗 <b>Requested by:</b> {song.user}"
         )
         reply = await update_message_with_thumbnail(c, msg, text, thumb, play_button(0, dur))
         if isinstance(reply, types.Error):
@@ -257,10 +257,10 @@ async def play_audio(c: Client, msg: types.Message) -> None:
 
     ub = await call.get_client(chat_id)
     if isinstance(ub, (types.Error, NoneType)):
-        return await edit_text(reply_message, "❌ Assistant not found for this chat.")
+        return await edit_text(reply_message, "❌ Assistant not found for this chat. Assistant username - @SVDGamerassistant")
 
     if isinstance(ub.me, (types.Error, NoneType)):
-        return await edit_text(reply_message, "❌ Assistant not found for this chat.")
+        return await edit_text(reply_message, "❌ Assistant not found for this chat. Assistant username - @SVDGamerassistant")
 
     assistant_id = ub.me.id
 
@@ -301,7 +301,7 @@ async def play_audio(c: Client, msg: types.Message) -> None:
 
     if not args and not url and not telegram.is_valid():
         recommendations = await wrapper.get_recommendations()
-        text = "ᴜsᴀɢᴇ: /play song_name\nSupports Spotify track, playlist, album, artist links.\n\n"
+        text = "ᴜsᴀɢᴇ: /play song_name\nSupports Spotify track(developing), playlist, album, artist links.\n\n"
         if not recommendations:
             return await edit_text(reply_message, text=text, reply_markup=SupportButton)
 
