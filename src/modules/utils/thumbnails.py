@@ -92,7 +92,7 @@ def add_controls(img: Image.Image) -> Image.Image:
 
     region = img.crop(box)
     controls = Image.open("src/modules/utils/SVD.png").convert("RGBA")
-    dark_region = ImageEnhance.Brightness(region).enhance(1.0)
+    dark_region = ImageEnhance.Brightness(region).enhance(0.5)
 
     mask = Image.new("L", dark_region.size, 0)
     ImageDraw.Draw(mask).rounded_rectangle(
@@ -162,7 +162,7 @@ async def gen_thumb(song: CachedTrack) -> str:
     bg.paste(image, (paste_x, paste_y), image)
 
     draw = ImageDraw.Draw(bg)
-    draw.text((285, 180), "SVD playlistsz", (1000, 1000, 1000), font=FONTS["nfont"])
+    draw.text((285, 180), "SVD playlistsz", (300, 300, 300), font=FONTS["nfont"])
     draw.text((285, 200), title, (350, 350, 350), font=FONTS["tfont"])
     draw.text((287, 235), artist, (255, 255, 255), font=FONTS["cfont"])
     draw.text((478, 321), get_duration(duration), (200, 200, 200), font=FONTS["dfont"])
