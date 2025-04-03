@@ -92,7 +92,7 @@ def add_controls(img: Image.Image) -> Image.Image:
 
     region = img.crop(box)
     controls = Image.open("src/modules/utils/SVD.png").convert("RGBA")
-    dark_region = ImageEnhance.Brightness(region).enhance(0.5)
+    dark_region = ImageEnhance.Brightness(region).enhance(1.0)
 
     mask = Image.new("L", dark_region.size, 0)
     ImageDraw.Draw(mask).rounded_rectangle(
