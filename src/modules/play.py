@@ -265,7 +265,7 @@ async def play_audio(c: Client, msg: types.Message) -> None:
     assistant_id = ub.me.id
 
     queue = await chat_cache.get_queue(chat_id)
-    if len(queue) > 10:
+    if len(queue) > 100:
         return await edit_text(
             reply_message,
             text=f"❌ Queue full! You have {len(queue)} tracks. Use /end to reset.",
@@ -301,7 +301,7 @@ async def play_audio(c: Client, msg: types.Message) -> None:
 
     if not args and not url and not telegram.is_valid():
         recommendations = await wrapper.get_recommendations()
-        text = "ᴜsᴀɢᴇ: /play song_name\nSupports Spotify track(developing), playlist, album, artist links.\n\n"
+        text = "ᴜsᴀɢᴇ: /play song_name\n\nSupports Spotify track,Jiosaavan, playlist, album, artist links.\n\n"
         if not recommendations:
             return await edit_text(reply_message, text=text, reply_markup=SupportButton)
 
