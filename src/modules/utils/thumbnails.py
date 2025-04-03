@@ -25,10 +25,10 @@ FONTS = {
 
 def resize_youtube_thumbnail(img: Image.Image) -> Image.Image:
     """
-    Resize a YouTube thumbnail to 640x640 while keeping important content.
+    Resize a YouTube thumbnail to 1000x1000 while keeping important content.
     It crops the center of the image after resizing.
     """
-    target_size = 640
+    target_size = 1000
     aspect_ratio = img.width / img.height
 
     if aspect_ratio > 1:
@@ -40,7 +40,7 @@ def resize_youtube_thumbnail(img: Image.Image) -> Image.Image:
 
     img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
-    # Crop to 640x640 (center crop)
+    # Crop to 1000x1000 (center crop)
     left = (img.width - target_size) // 2
     top = (img.height - target_size) // 2
     right = left + target_size
@@ -54,7 +54,7 @@ def resize_jiosaavn_thumbnail(img: Image.Image) -> Image.Image:
     Resize a JioSaavn thumbnail from 500x500 to 600x600.
     It upscales the image while preserving quality.
     """
-    target_size = 600
+    target_size = 1000
     img = img.resize((target_size, target_size), Image.Resampling.LANCZOS)
     return img
 
@@ -88,7 +88,7 @@ def clean_text(text: str, limit: int = 17) -> str:
 def add_controls(img: Image.Image) -> Image.Image:
     """Adds blurred background effect and overlay controls."""
     img = img.filter(ImageFilter.GaussianBlur(25))
-    box = (120, 120, 520, 480)
+    box = (500, 500, 500, 500)
 
     region = img.crop(box)
     controls = Image.open("src/modules/utils/SVD.PNG.png").convert("RGBA")
