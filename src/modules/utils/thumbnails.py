@@ -25,10 +25,10 @@ FONTS = {
 
 def resize_youtube_thumbnail(img: Image.Image) -> Image.Image:
     """
-    Resize a YouTube thumbnail to 1000x1000 while keeping important content.
+    Resize a YouTube thumbnail to 640x640 while keeping important content.
     It crops the center of the image after resizing.
     """
-    target_size = 1000
+    target_size = 640
     aspect_ratio = img.width / img.height
 
     if aspect_ratio > 1:
@@ -40,7 +40,7 @@ def resize_youtube_thumbnail(img: Image.Image) -> Image.Image:
 
     img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
-    # Crop to 1000x1000 (center crop)
+    # Crop to 640x640 (center crop)
     left = (img.width - target_size) // 2
     top = (img.height - target_size) // 2
     right = left + target_size
@@ -54,7 +54,7 @@ def resize_jiosaavn_thumbnail(img: Image.Image) -> Image.Image:
     Resize a JioSaavn thumbnail from 500x500 to 600x600.
     It upscales the image while preserving quality.
     """
-    target_size = 2000
+    target_size = 600
     img = img.resize((target_size, target_size), Image.Resampling.LANCZOS)
     return img
 
@@ -66,7 +66,7 @@ async def fetch_image(url: str) -> Image.Image | None:
     async with httpx.AsyncClient() as client:
         try:
             if url.startswith("https://is1-ssl.mzstatic.com"):
-                url = url.replace("500x500bb.jpg", "2000x2000bb.jpg")
+                url = url.replace("500x500bb.jpg", "600x600bb.jpg")
             response = await client.get(url, timeout=5)
             response.raise_for_status()
             img = Image.open(BytesIO(response.content)).convert("RGBA")
@@ -88,19 +88,19 @@ def clean_text(text: str, limit: int = 17) -> str:
 def add_controls(img: Image.Image) -> Image.Image:
     """Adds blurred background effect and overlay controls."""
     img = img.filter(ImageFilter.GaussianBlur(25))
-    box = (1000, 1000, 1000, 1000)
+    box = (120, 120, 520, 480)
 
     region = img.crop(box)
     controls = Image.open("src/modules/utils/SVD.png").convert("RGBA")
-    dark_region = ImageEnhance.Brightness(region).enhance(0.5)
+    dark_region = ImageEnhance.Brightness(region).enhance(2.0)
 
     mask = Image.new("L", dark_region.size, 0)
     ImageDraw.Draw(mask).rounded_rectangle(
-        (0, 0, box[2] - box[0], box[3] - box[1]), 0, fill=1500
+        (0, 0, box[2] - box[0], box[3] - box[1]), 40, fill=255
     )
 
     img.paste(dark_region, box, mask)
-    img.paste(controls, (500, 800), controls)
+    img.paste(controls, (135, 305), controls)
 
     return img
 
@@ -158,11 +158,11 @@ async def gen_thumb(song: CachedTrack) -> str:
     image = make_sq(thumb)
 
     # Positions
-    paste_x, paste_y = 145, 155
+    paste_x, paste_y = 200, 155
     bg.paste(image, (paste_x, paste_y), image)
 
     draw = ImageDraw.Draw(bg)
-    draw.text((285, 180), "SVD playlist", (192, 192, 192), font=FONTS["nfont"])
+    draw.text((285, 180), "SVD playlistsz", (300, 300, 300), font=FONTS["nfont"])
     draw.text((285, 200), title, (255, 255, 255), font=FONTS["tfont"])
     draw.text((287, 235), artist, (255, 255, 255), font=FONTS["cfont"])
     draw.text((478, 321), get_duration(duration), (192, 192, 192), font=FONTS["dfont"])
