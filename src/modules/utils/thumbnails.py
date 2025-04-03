@@ -54,7 +54,7 @@ def resize_jiosaavn_thumbnail(img: Image.Image) -> Image.Image:
     Resize a JioSaavn thumbnail from 500x500 to 600x600.
     It upscales the image while preserving quality.
     """
-    target_size = 
+    target_size = 2000
     img = img.resize((target_size, target_size), Image.Resampling.LANCZOS)
     return img
 
