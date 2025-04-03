@@ -66,7 +66,7 @@ async def fetch_image(url: str) -> Image.Image | None:
     async with httpx.AsyncClient() as client:
         try:
             if url.startswith("https://is1-ssl.mzstatic.com"):
-                url = url.replace("500x500bb.jpg", "600x600bb.jpg")
+                url = url.replace("700x500bb.jpg", "800x600bb.jpg")
             response = await client.get(url, timeout=5)
             response.raise_for_status()
             img = Image.open(BytesIO(response.content)).convert("RGBA")
