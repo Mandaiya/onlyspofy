@@ -35,13 +35,17 @@ async def start_cmd(c: Client, message: types.Message):
     text = f"""
     нєу {await message.mention(parse_mode='html')} 👋
 
-<b>Welcome to {me.first_name} </b>
+<b>Welcome to the Universe{me.first_name} </b>
+❂ I am a simple music bot on Telegram, here to play your favorite tunes!.
+🏎 Just let me know what song you want, and I’ll play it for you!.
+🏎 This bot is just for listening to music; there are no additional management features
+🏎 I can do a lot of things, but I’m still in development. Please handle me with care!.
 
-Your ultimate music companion for Telegram voice chats! 
+  We are the Universe People – initially a network for selling VPS, we have since evolved into providing bots for user use. 
 
 <b>Supported Platforms:</b> Spotify, YouTube and Telegram Audio.
 
-<b>📢 Note:</b> This bot works best in groups and requires admin permissions to function.
+<b>📢 Note:</b> 
     """
 
     reply = await message.reply_text(text, parse_mode="html", reply_markup=AddMeButton)
@@ -168,7 +172,7 @@ async def reload_cmd(c: Client, message: types.Message):
     ub = await call.get_client(chat_id)
     if isinstance(ub, (types.Error, NoneType)):
         return await reply.edit_text(
-            "❌ Something went wrong. Assistant not found for this chat."
+            "❌ Something went wrong. Assistant not found for this chat. Assistant username - @SVDGamerassistant"
         )
 
     chat_invite_cache.pop(chat_id, None)
