@@ -46,7 +46,7 @@ async def start_cmd(c: Client, message: types.Message):
 
 <b>Supported Platforms:</b> Spotify, YouTube and Telegram Audio.
 
-<b>📢 Note:</b> """This bot can play your Spotify playlists, Jiosaavan and youtube playlists. if any queries kindly reach out to @Soupboy_single.
+<b>📢 Note:</b> This bot can play your Spotify playlists, Jiosaavan and youtube playlists. if any queries kindly reach out to @Soupboy_single.
     """
 
     reply = await message.reply_text(text, parse_mode="html", reply_markup=AddMeButton)
@@ -129,9 +129,6 @@ async def privacy_handler(c: Client, message: types.Message):
 <b>9. Changes to the Privacy Policy:</b>
 - We may update this privacy policy from time to time. Any changes will be communicated through updates within the bot.
 
-<b>10. Contact Us:</b>
-If you have any questions or concerns about our privacy policy, feel free to contact us at <a href="https://t.me/GuardxSupport">Support Group</a>
-
 ──────────────────
 <b>Note:</b> This privacy policy is in place to help you understand how your data is handled and to ensure that your experience with {bot_name} is safe and respectful.
     """
@@ -203,16 +200,7 @@ async def reload_cmd(c: Client, message: types.Message):
 
 @Client.on_message(Filter.command("ping"))
 async def ping_cmd(c: Client, message: types.Message):
-    reply = await message.reply_text("🏓 Pong!")
-    if isinstance(reply, types.Error):
-        c.logger.warning(f"Error sending message: {reply}")
-
-    return
-
-
-@Client.on_message(Filter.command("song"))
-async def song_cmd(c: Client, message: types.Message):
-    reply = await message.reply_text("🎶 USE: @SpTubeBot")
+    reply = await message.reply_text("🏓 Pinging!")
     if isinstance(reply, types.Error):
         c.logger.warning(f"Error sending message: {reply}")
 
