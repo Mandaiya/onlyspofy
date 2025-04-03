@@ -303,7 +303,7 @@ async def stop_song(_: Client, msg: types.Message) -> None:
     try:
         await call.end(chat_id)
         await msg.reply_text(
-            f"🎵 <b>Stream Ended</b> ❄️\n│ \n└ Requested by: {await msg.mention()} 🥀"
+            f"♩ <b>Stream Closed</b> ❄️\n│ \n└ Requested by: {await msg.mention()} 🥀"
         )
     except Exception as e:
         LOGGER.error(f"Error stopping song: {e}")
@@ -320,7 +320,7 @@ async def pause_song(_: Client, msg: types.Message) -> None:
 @Client.on_message(Filter.command("resume"))
 async def resume(_: Client, msg: types.Message) -> None:
     await handle_playback_action(
-        _, msg, call.resume, "🎶 <b>Stream Resumed</b> 💫", "Failed to resume the song"
+        _, msg, call.resume, "♮ <b>Stream Resumed</b> 💫", "Failed to resume the song"
     )
 
 
