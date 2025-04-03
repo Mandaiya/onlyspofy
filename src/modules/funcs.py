@@ -70,7 +70,7 @@ async def set_play_type(_: Client, msg: types.Message) -> None:
         return
 
     try:
-        await db.set_play_type(cht_id, play_type)
+        await db.set_play_type(chat_id, play_type)
         await msg.reply_text(f"✅ Play type set to {play_type}")
     except Exception as e:
         LOGGER.error(f"Error setting play type: {e}")
