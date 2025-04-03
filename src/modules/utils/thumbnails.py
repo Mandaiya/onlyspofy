@@ -96,7 +96,7 @@ def add_controls(img: Image.Image) -> Image.Image:
 
     mask = Image.new("L", dark_region.size, 0)
     ImageDraw.Draw(mask).rounded_rectangle(
-        (150, 150, box[2] - box[0], box[3] - box[1]), 150, fill=255
+        (0, 0, box[2] - box[0], box[3] - box[1]), 0, fill=255
     )
 
     img.paste(dark_region, box, mask)
