@@ -15,6 +15,10 @@ load_dotenv()
 API_ID = int(getenv("API_ID", None))
 API_HASH = getenv("API_HASH", None)
 
+# External service credentials - Obtain these from Spotify
+SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID", "c4e57e7985004fe0aef8996dacf25309")
+SPOTIFY_CLIENT_SECRET = getenv("SPOTIFY_CLIENT_SECRET", "3ef78878f1514cd68f742aa5cd61c84d")
+
 "You can get this variable from @BotFather"
 TOKEN = getenv("TOKEN", None)
 
