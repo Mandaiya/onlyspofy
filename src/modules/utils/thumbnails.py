@@ -54,7 +54,7 @@ def resize_jiosaavn_thumbnail(img: Image.Image) -> Image.Image:
     Resize a JioSaavn thumbnail from 500x500 to 600x600.
     It upscales the image while preserving quality.
     """
-    target_size = 1000
+    target_size = 600
     img = img.resize((target_size, target_size), Image.Resampling.LANCZOS)
     return img
 
@@ -91,7 +91,7 @@ def add_controls(img: Image.Image) -> Image.Image:
     box = (120, 120, 520, 480)
 
     region = img.crop(box)
-    controls = Image.open("src/modules/utils/SVDpng").convert("RGBA")
+    controls = Image.open("src/modules/utils/SVD.png").convert("RGBA")
     dark_region = ImageEnhance.Brightness(region).enhance(0.5)
 
     mask = Image.new("L", dark_region.size, 0)
