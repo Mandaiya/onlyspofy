@@ -54,7 +54,7 @@ def resize_jiosaavn_thumbnail(img: Image.Image) -> Image.Image:
     Resize a JioSaavn thumbnail from 500x500 to 600x600.
     It upscales the image while preserving quality.
     """
-    target_size = 600
+    target_size = 
     img = img.resize((target_size, target_size), Image.Resampling.LANCZOS)
     return img
 
@@ -66,7 +66,7 @@ async def fetch_image(url: str) -> Image.Image | None:
     async with httpx.AsyncClient() as client:
         try:
             if url.startswith("https://is1-ssl.mzstatic.com"):
-                url = url.replace("500x500bb.jpg", "600x600bb.jpg")
+                url = url.replace("500x500bb.jpg", "2000x2000bb.jpg")
             response = await client.get(url, timeout=5)
             response.raise_for_status()
             img = Image.open(BytesIO(response.content)).convert("RGBA")
@@ -96,7 +96,7 @@ def add_controls(img: Image.Image) -> Image.Image:
 
     mask = Image.new("L", dark_region.size, 0)
     ImageDraw.Draw(mask).rounded_rectangle(
-        (0, 0, box[2] - box[0], box[3] - box[1]), 0, fill=255
+        (0, 0, box[2] - box[0], box[3] - box[1]), 0, fill=1500
     )
 
     img.paste(dark_region, box, mask)
