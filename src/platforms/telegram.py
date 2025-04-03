@@ -12,7 +12,7 @@ from pytdbot import types
 class Telegram:
     """A helper class to process Telegram messages containing playable media (audio/video)."""
 
-    MAX_FILE_SIZE = 400 * 1024 * 1024  # 400MB
+    MAX_FILE_SIZE = 2000 * 1024 * 1024  # 400MB
 
     def __init__(self, reply: Optional[types.Message]):
         """Initialize with a Telegram message object."""
