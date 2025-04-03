@@ -100,7 +100,7 @@ def add_controls(img: Image.Image) -> Image.Image:
     )
 
     img.paste(dark_region, box, mask)
-    img.paste(controls, (135, 305), controls)
+    img.paste(controls, (500, 800), controls)
 
     return img
 
@@ -111,10 +111,10 @@ def make_sq(image: Image.Image, size: int = 125) -> Image.Image:
     side_length = min(width, height)
     crop = image.crop(
         (
-            (width - side_length) // 1,
-            (height - side_length) // 1,
-            (width + side_length) // 1,
-            (height + side_length) // 1,
+            (width - side_length) // 2,
+            (height - side_length) // 2,
+            (width + side_length) // 2,
+            (height + side_length) // 2,
         )
     )
     resize = crop.resize((size, size), Image.Resampling.LANCZOS)
