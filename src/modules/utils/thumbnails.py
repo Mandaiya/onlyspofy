@@ -91,7 +91,7 @@ def add_controls(img: Image.Image) -> Image.Image:
     box = (500, 500, 500, 500)
 
     region = img.crop(box)
-    controls = Image.open("src/modules/utils/SVD.PNG.png").convert("RGBA")
+    controls = Image.open("src/modules/utils/SVD.png").convert("RGBA")
     dark_region = ImageEnhance.Brightness(region).enhance(0.5)
 
     mask = Image.new("L", dark_region.size, 0)
