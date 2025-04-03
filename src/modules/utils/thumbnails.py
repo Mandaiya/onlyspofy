@@ -92,7 +92,7 @@ def add_controls(img: Image.Image) -> Image.Image:
 
     region = img.crop(box)
     controls = Image.open("src/modules/utils/SVD.png").convert("RGBA")
-    dark_region = ImageEnhance.Brightness(region).enhance(2.0)
+    dark_region = ImageEnhance.Brightness(region).enhance(0.5)
 
     mask = Image.new("L", dark_region.size, 0)
     ImageDraw.Draw(mask).rounded_rectangle(
@@ -158,7 +158,7 @@ async def gen_thumb(song: CachedTrack) -> str:
     image = make_sq(thumb)
 
     # Positions
-    paste_x, paste_y = 250, 550
+    paste_x, paste_y = 500, 250
     bg.paste(image, (paste_x, paste_y), image)
 
     draw = ImageDraw.Draw(bg)
