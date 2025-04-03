@@ -54,7 +54,7 @@ def resize_jiosaavn_thumbnail(img: Image.Image) -> Image.Image:
     Resize a JioSaavn thumbnail from 500x500 to 600x600.
     It upscales the image while preserving quality.
     """
-    target_size = 600
+    target_size = 1000
     img = img.resize((target_size, target_size), Image.Resampling.LANCZOS)
     return img
 
@@ -162,7 +162,7 @@ async def gen_thumb(song: CachedTrack) -> str:
     bg.paste(image, (paste_x, paste_y), image)
 
     draw = ImageDraw.Draw(bg)
-    draw.text((285, 180), "Fallen Beatz", (192, 192, 192), font=FONTS["nfont"])
+    draw.text((285, 180), "SVD playlist", (192, 192, 192), font=FONTS["nfont"])
     draw.text((285, 200), title, (255, 255, 255), font=FONTS["tfont"])
     draw.text((287, 235), artist, (255, 255, 255), font=FONTS["cfont"])
     draw.text((478, 321), get_duration(duration), (192, 192, 192), font=FONTS["dfont"])
