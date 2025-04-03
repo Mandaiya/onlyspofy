@@ -158,14 +158,14 @@ async def gen_thumb(song: CachedTrack) -> str:
     image = make_sq(thumb)
 
     # Positions
-    paste_x, paste_y = 200, 155
+    paste_x, paste_y = 250, 550
     bg.paste(image, (paste_x, paste_y), image)
 
     draw = ImageDraw.Draw(bg)
     draw.text((285, 180), "SVD playlistsz", (300, 300, 300), font=FONTS["nfont"])
-    draw.text((285, 200), title, (255, 255, 255), font=FONTS["tfont"])
+    draw.text((285, 200), title, (350, 350, 350), font=FONTS["tfont"])
     draw.text((287, 235), artist, (255, 255, 255), font=FONTS["cfont"])
-    draw.text((478, 321), get_duration(duration), (192, 192, 192), font=FONTS["dfont"])
+    draw.text((478, 321), get_duration(duration), (200, 200, 200), font=FONTS["dfont"])
 
     await asyncio.to_thread(bg.save, save_dir)
     return save_dir if await aiopath.exists(save_dir) else config.IMG_URL
