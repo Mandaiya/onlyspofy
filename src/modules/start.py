@@ -36,6 +36,7 @@ async def start_cmd(c: Client, message: types.Message):
     нєу {await message.mention(parse_mode='html')} 👋
 
 <b>Welcome to the Universe{me.first_name} </b>
+
 ❂ I am a simple music bot on Telegram, here to play your favorite tunes!.
 🏎 Just let me know what song you want, and I’ll play it for you!.
 🏎 This bot is just for listening to music; there are no additional management features
@@ -45,7 +46,7 @@ async def start_cmd(c: Client, message: types.Message):
 
 <b>Supported Platforms:</b> Spotify, YouTube and Telegram Audio.
 
-<b>📢 Note:</b> 
+<b>📢 Note:</b> """This bot can play your Spotify playlists, Jiosaavan and youtube playlists. if any queries kindly reach out to @Soupboy_single.
     """
 
     reply = await message.reply_text(text, parse_mode="html", reply_markup=AddMeButton)
@@ -57,7 +58,7 @@ async def start_cmd(c: Client, message: types.Message):
 
 @Client.on_message(Filter.command("help"))
 async def help_cmd(c: Client, message: types.Message):
-    text = f"""<b>Help for {c.me.first_name}:</b>
+    text = f"""<b>At your service. {c.me.first_name}: Below are the list i can assist you with</b>
 <b>/start:</b> Start the bot.
 <b>/reload:</b> Reload chat administrator list.
 <b>/play:</b> Reply to an audio or provide a song name to play music.
@@ -74,8 +75,6 @@ async def help_cmd(c: Client, message: types.Message):
 <b>/loop:</b> Loop the current song. use /loop 0 to disable.
 <b>/queue:</b> Get the queue of the current chat.
 <b>/clear:</b> Clear the queue of the current chat.
-<b>/song:</b> Download a song from YouTube, Spotify.
-<b>/setPlayType:</b> Change the play type of the bot.
 <b>/privacy:</b> Read our privacy policy.
 
 
